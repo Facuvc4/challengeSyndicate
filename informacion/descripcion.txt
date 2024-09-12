@@ -1,0 +1,42 @@
+36953479|50005181740|PINTOS CARLOS HECTOR |19/05/2024 12:08:05|1|Permanente con Importe|397753|SERVICIOS ESPECIALES FUERZAS DEL CIELO|50.00|0|0.00||202407||50.00|50.00|Vitalicio 06-2011|42658D60FF7C22EBE73EAEB256446C5C9DAF2505|20213798627|False
+
+0-DNI
+1-id_afiliado
+2-nombre
+3-fecha_pago
+4-cod_tipo_pago
+5-tipo_pago
+6-cod_servicio
+7-descripcion_servicio
+8-importe
+9-nro_cuotas
+10-porcentaje
+11-cod_sindicato
+12-sub_total
+13-total
+14-descripcion_afiliacion
+15-referencia_pago
+16-cod_identificacion
+17-Booleano para ver si paga o no
+
+Tabla afiliado
+DNI
+id_afiliado
+nombre
+descripcion_afiliacion
+pagos = [
+fecha_pago
+cod_tipo_pago
+tipo_pago
+cod_servicio
+descripcion_servicio
+importe
+nro_cuotas
+porcentaje
+cod_sindicato
+sub_total
+total
+descripcion_afiliacion
+referencia_pago
+cod_identificacion
+Booleano para ver si paga o no ]

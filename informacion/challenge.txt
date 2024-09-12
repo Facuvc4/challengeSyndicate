@@ -1,0 +1,59 @@
+### Challenge:
+
+Se te proporciona un desafío donde deberás trabajar con Node.js y TypeScript para crear una API que gestione el procesamiento de archivos de afiliados. Se espera que demuestres habilidades en el manejo de rutas, servicios, modelos de datos, y que apliques buenas prácticas de desarrollo y comprensión del problema.
+
+### Contexto:
+
+En el sindicato Fuerzas del cielo existen afiliados que mes a mes son informados vía correo a través de un archivo de texto, donde entre los datos que se reciben son: dni, nombre, pago, fecha de pago, etc.
+
+Si un afiliado no aparece en un mes, se interpreta que no ha informado pago.
+
+Es primordial que el sindicato Fuerzas del cielo pueda saber cuantos afiliados tienen con 3 meses consecutivos que no han informado el pago, ya que procederá a la baja.
+
+Tendrás un archivo base que representa el primer mes de carga que es mayo. Luego tendrás  3 archivos  más que  representan los meses de junio, julio y agosto, cada uno con información sobre los pagos de afiliados. 
+
+Aquí tienes 4 archivos de ejemplo.
+
+### Tareas del Challenge:
+
+1. **Crear un Endpoint para Cargar Archivos:**
+    - Desarrolla un endpoint que permita la carga de archivos, indicando el mes y el año correspondiente.
+    - El archivo cargado debe ser procesado y guardar datos en la base de datos.
+2. **Procesar Archivos y Actualizar Estado de Pago:**
+    - Crea un servicio que procese el archivo cargado.
+    - El servicio debe identificar a los afiliados en el archivo y marcar como "pagado" el mes actual para aquellos que aparezcan en el archivo e “impago” para los que no aparezcan
+3. **Notificación por Correo Electrónico:**
+    - Implementa una funcionalidad que detecte cuando un afiliado ha dejado de aparecer en el archivo durante tres meses consecutivos.
+    - Al tercer mes sin aparecer, el sistema debe enviar un correo electrónico notificando los afiliados que han dejado de pagar su cuota mensual y procederán a darse de baja.
+
+### Aclaraciones:
+
+- Al ingresar varias veces el mismo archivo solo debe impactar el procesamiento una vez.
+- Se podría cargar en diferente orden:  jun/mayo/jun/agosto
+- Debo poder probar ingresar un archivo de septiembre y tener en cuenta la misma lógica realizada.
+- En caso de usar alguna AI, deberá ser mediante código con su correspondiente integración
+- En caso de que falte información, podrás proponer lo necesario
+
+### Requisitos Técnicos:
+
+- **REST API:** Desarrolla la aplicación como una REST API utilizando Node.js y TypeScript.
+- **Base de Datos:** Utiliza Sequelize (con una base de datos SQL) o Mongoose (con MongoDB) para el modelado y almacenamiento de datos.
+- **Swagger (Opcional):** Documenta tu API utilizando Swagger para facilitar la comprensión y uso de los endpoints.
+- **Patrones de Diseño:** Aplica patrones de diseño donde sea apropiado para mejorar la mantenibilidad y escalabilidad de tu código.
+
+### BonusTrack:
+
+- **Estado de Cuenta:**
+    - Implementar un endpoint que permita consultar el estado de cuenta de un afiliado, mostrando los meses pagados y no pagados.
+- **Filtro por Afiliados con Deuda Prolongada:**
+    - Crear un endpoint que permita filtrar los afiliados con más de 3 meses consecutivos de deuda, indicando los meses específicos con deuda
+
+### Entregables:
+
+1. Código fuente en un repositorio de GitHub.
+2. Instrucciones para la configuración y ejecución del proyecto.
+3. Documentación de la API (idealmente en Swagger).
+4. Capturas de pantalla o logs que muestren el funcionamiento de la notificación por correo.
+5. Archivos de ejemplo.
+
+¡Buena suerte!
