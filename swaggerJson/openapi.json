@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Syndicate Api",
+    "description": "Esta api es para manejar la carga de datos a traves de archivos .txt de un sidicato, ademas de agregar dos endpoints extras",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1234/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "files",
+      "description": "Maneja la carga de archivos .txt, usando MongoDB"
+    },
+    {
+      "name": "affiliate",
+      "description": "Maneja las llamadas para obtener informacion de los afilaidos"
+    }
+  ],
+  "paths": {
+    "/affiliate/upload/{yearRequest}/{monthRequest}": {
+      "post": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Lee el archivo .txt, lo procesa y lo sube a la base de datos. Además, manda un mail si hay afiliados con 3 meses consecutivos sin pagar.",
+        "parameters": [
+          {
+            "name": "yearRequest",
+            "in": "path",
+            "required": true,
+            "description": "Año de la solicitud",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "monthRequest",
+            "in": "path",
+            "required": true,
+            "description": "Mes de la solicitud",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "El archivo .txt a subir"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "El archivo fue procesado correctamente"
+          },
+          "400": {
+            "description": "Error en los parámetros o en el archivo"
+          },
+          "500": {
+            "description": "Error en el servidor"
+          }
+        }
+      }
+    },
+    "/affiliate/{id}": {
+      "get": {
+        "tags": [
+          "affiliate"
+        ],
+        "summary": "Devuelve los estados de pago de un afiliado",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del afiliado",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Error en los parámetros"
+          },
+          "500": {
+            "description": "Error en el servidor"
+          }
+        }
+      }
+    },
+    "/affiliate/desactivateds": {
+      "get": {
+        "tags": [
+          "affiliate"
+        ],
+        "summary": "Devuelve los afiliados que estan dados de baja mas sus estados de pago",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Error en los parámetros"
+          },
+          "500": {
+            "description": "Error en el servidor"
+          }
+        }
+      }
+    }
+  }
+}
