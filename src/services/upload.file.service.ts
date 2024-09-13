@@ -24,9 +24,6 @@ export async function uploadFile(
         await Affiliate.updateOne(
           { _id: affiliate.affiliate_id },
           {
-            $set: {
-              unpaid_months_count: 0,
-            },
             $setOnInsert: {
               dni: affiliate.dni,
               _id: affiliate.affiliate_id,

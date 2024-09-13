@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { getDesativatedAffiliatesController } from '../controllers/index.controller';
-import upload from '../helpers/file/create.helper';
+import {
+  getDesativatedAffiliatesController,
+  getPaymentStatus,
+} from '../controllers/index.controller';
 
 export const affiliateRouter = Router();
 
 affiliateRouter.get('/desactivateds', getDesativatedAffiliatesController);
+affiliateRouter.get('/:id', getPaymentStatus);
 
 export default affiliateRouter;

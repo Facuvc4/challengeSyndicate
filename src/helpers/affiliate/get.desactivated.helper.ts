@@ -4,10 +4,14 @@ import { getAffiliates } from './get.helper';
 
 const desactivatedAffiliates = new Map();
 
-export async function getDesactivatedAffiliates(yearRequest: number = 0) {
+export async function getDesactivatedAffiliates(
+  yearRequest: number = 0,
+  months: any = 0,
+  affiliates: any = 0
+) {
   if (yearRequest === 0) yearRequest = new Date().getFullYear();
-  const months = await getMonths(yearRequest);
-  const affiliates = await getAffiliates();
+  if (months === 0) months = await getMonths(yearRequest);
+  if (affiliates === 0) affiliates = await getAffiliates();
 
   if (months && affiliates) {
     for (const affiliate of affiliates) {

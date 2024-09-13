@@ -7,7 +7,11 @@ export async function registerUnpaid(yearRequest: number) {
   try {
     const months = await getMonths(yearRequest);
     const affiliates = await getAffiliates();
-    const desactivatedAffiliates = await getDesactivatedAffiliates(yearRequest);
+    const desactivatedAffiliates = await getDesactivatedAffiliates(
+      yearRequest,
+      months,
+      affiliates
+    );
     if (months && affiliates) {
       for (const affiliate of affiliates) {
         if (desactivatedAffiliates.has(affiliate._id)) continue;
@@ -16,21 +20,14 @@ export async function registerUnpaid(yearRequest: number) {
             affiliate_id: affiliate._id,
             month: month,
             year: yearRequest,
-            status: 'paid',
           });
           if (!result) {
-            await PaymentsStatus.updateOne(
-              {
-                affiliate_id: affiliate._id,
-                month: month,
-                year: yearRequest,
-              },
-              {
-                $setOnInsert: {
-                  status: 'unpaid',
-                },
-              }
-            );
+            await PaymentsStatus.create({
+              affiliate_id: affiliate._id,
+              month: month,
+              year: yearRequest,
+              status: 'unpaid',
+            });
           }
         }
       }
