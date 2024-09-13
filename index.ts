@@ -8,7 +8,7 @@ import swaggerUi from 'swagger-ui-express';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 1234;
 
 const swaggerJsdoc = require('./swaggerJson/openapi.json');
 
